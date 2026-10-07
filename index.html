@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ыйык Ажылык — Исламдын 5-парзы жана Тарыхы</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Sans+KG:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #c5a059;
+            --accent-gold: #e5c158;
+            --dark-green: #0a2f1d;
+            --emerald: #14532d;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-dark: #1f2937;
+            --text-muted: #4b5563;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans KG', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.8;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 47, 29, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--primary-gold);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            border-color: var(--primary-gold);
+            color: var(--accent-gold);
+            background: rgba(197, 160, 89, 0.1);
+        }
+
+        /* Hero Banner Header */
+        header {
+            background: linear-gradient(rgba(10, 47, 29, 0.85), rgba(10, 47, 29, 0.92)), 
+                        url('https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+            color: #ffffff;
+            text-align: center;
+            padding: 100px 20px 80px;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            max-width: 750px;
+            margin: 0 auto 25px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-gold);
+            color: var(--dark-green);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-gold);
+        }
+
+        .section-title {
+            color: var(--dark-green);
+            font-size: 1.9rem;
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background: var(--primary-gold);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* General Typography & Quotes */
+        .intro-text {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .quote-box {
+            background: #fcf8f2;
+            border-left: 4px solid var(--primary-gold);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-style: italic;
+            color: #374151;
+        }
+
+        .quote-box strong {
+            color: var(--dark-green);
+            font-style: normal;
+        }
+
+        /* Talbiya Box */
+        .talbiya-box {
+            background: linear-gradient(135deg, #fdfbf7, #f5efe6);
+            border: 2px dashed var(--primary-gold);
+            border-radius: var(--radius);
+            padding: 35px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 2.3rem;
+            color: var(--dark-green);
+            direction: rtl;
+            line-height: 2.2;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .transliteration {
+            font-style: italic;
+            font-weight: 600;
+            color: #d97706;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .translation {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Cards Layout */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: var(--radius);
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: var(--primary-gold);
+        }
+
+        .card-number {
+            background: var(--dark-green);
+            color: var(--accent-gold);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: var(--dark-green);
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        /* Content with Media */
+        .content-media {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .content-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .content-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .content-image img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* Styled Lists */
+        ul.custom-list, ol.custom-list {
+            padding-left: 0;
+            list-style: none;
+        }
+
+        ul.custom-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        ul.custom-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--primary-gold);
+            font-size: 1.1rem;
+        }
+
+        ol.custom-list {
+            counter-reset: item;
+        }
+
+        ol.custom-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+        }
+
+        ol.custom-list li::before {
+            counter-increment: item;
+            content: counter(item);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            background: var(--primary-gold);
+            color: var(--dark-green);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-green);
+            color: #ffffff;
+            text-align: center;
+            padding: 35px 20px;
+            border-top: 4px solid var(--primary-gold);
+            margin-top: 60px;
+        }
+
+        footer p {
+            opacity: 0.85;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .arabic-text { font-size: 1.7rem; }
+            .section { padding: 25px 20px; }
+            .nav-container { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">🕋 Ыйык Ажылык</a>
+            <div class="nav-links">
+                <a href="#about">Фарз Болушу</a>
+                <a href="#quran">Куран</a>
+                <a href="#hadith">Сүннөт</a>
+                <a href="#talbiya">Талбия</a>
+                <a href="#farz">3 Фарз</a>
+                <a href="#safa-marva">Сафа-Марва</a>
+                <a href="#zamzam">Зам-зам</a>
+                <a href="#kaaba">Ыйык Кааба</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <header>
+        <span class="badge">Исламдын 5-парзы</span>
+        <h1>Ажылык жана Кааба Зыяраты</h1>
+        <p>Жүрөктөрдүн тазаруусу, руханий жаңылануу жана Жаратканга карай улуу сапар</p>
+    </header>
+
+    <div class="container">
+
+        <!-- 1. Ажылыктын Фарз Болушу жана Тарыхы -->
+        <section id="about" class="section">
+            <h2 class="section-title">Ажылык качан жана кантип фарз болгон?</h2>
+            <p class="intro-text">
+                Ажылык — Ислам дининин беш түркүгүнүн бири болуп саналат. Ал материалдык жана физикалык мүмкүнчүлүгү жеткен ар бир мусулманга өмүрүндө бир жолу аткаруусу парз кылынган ибадат. Ислам календары боюнча <strong>Зул-хижжа</strong> айында аткарылат.
+            </p>
+            <div class="quote-box">
+                <strong>Мөөнөтү:</strong> Ажылык <strong>хижраттын 9-жылы</strong> фарз кылынган.<br>
+                Ажылык фарз болгон жылы Мухаммад пайгамбарыбыз (с.а.в.) Меккеге Абу Бакр Сыддык (р.а.) сахабаны ажылыкка башчы кылып жөнөткөн. Кийинки жылы (хижраттын 10-жылы) Мухаммад пайгамбарыбыз (с.а.в.) өзү өмүрүндөгү эң алгачкы жана эң акыркы <strong>«Коштошуу ажылыгын»</strong> (Хаджат уль-Вадаа) аткарган.
+            </div>
+        </section>
+
+        <!-- 2. Курандан Далилдер (Аяттар) -->
+        <section id="quran" class="section">
+            <h2 class="section-title">Ыйык Курандан Далилдер</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Аали Имран сүрөсү, 97-аят</h3>
+                    <p class="translation">
+                        «...Жолго каруусу жеткен (материалдык жана физикалык мүмкүнчүлүгү бар) адамдар үчүн Аллахтын ыраазычылыгы үчүн Каабага ажылык кылуу – милдет катары жүктөлдү...»
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>Хаж сүрөсү, 27-аят</h3>
+                    <p class="translation">
+                        «Адамдарды ажылыкка чакыр! Алар (сага) жөө жана арык төөнүн үстүндө абдан алыс жолдордон келишет.»
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>Бакара сүрөсү, 196-аят</h3>
+                    <p class="translation">
+                        «Аллах үчүн ажылыкты жана умраны толук аткарыла!»
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Сүннөттөн Далилдер (Хадистер) -->
+        <section id="hadith" class="section">
+            <h2 class="section-title">Сүннөттөн Далилдер (Куттуу Хадистер)</h2>
+            
+            <div class="quote-box">
+                <strong>Исламдын 5 түркүгү:</strong><br>
+                Пайгамбарыбыз (с.а.в.) айткан: <em>«Ислам беш нерсенин үстүнө курулган: Аллахтан башка кудай жок экенине жана Мухаммад Анын элчиси экенине күбөлүк берүү, намаз окуу, зекет берүү, Рамазан айында орозо кармоо жана чамасы жеткен адамга Каабага ажылык кылуу»</em> (Бухари, Муслим).
+            </div>
+
+            <div class="quote-box">
+                <strong>Өмүрдө бир жолу фарз экендиги:</strong><br>
+                Пайгамбарыбыз (с.а.в.): <em>«Эй, адамдар! Аллах силерге ажылыкты фарз кылды, ажылык кылгыла»</em> — дегенде, бир киши: <em>«Ар жылыбы, оо Аллахтын элчиси?»</em> деп сурайт. Пайгамбар (с.а.в.): <em>«Эгер ооба десем, ар жылы фарз болуп калмак, буга күчүңөр жетмек эмес. Ажылык — өмүрдө бир гана жолу фарз»</em> — деп жооп берген (Муслим).
+            </div>
+
+            <div class="quote-box">
+                <strong>Ажылыктын сообу:</strong><br>
+                <em>«Кимде-ким күнөө кылбай, жаман сөз сүйлөбөй ажылыкты аткарып кайтса, ал энесинен жаңы төрөлгөндөй таптаза болуп кайтат»</em> (Бухари).
+            </div>
+        </section>
+
+        <!-- 4. Талбия дубасы -->
+        <section id="talbiya" class="section">
+            <h2 class="section-title">Талбия Дубасы (Толук Тексти)</h2>
+            <p style="text-align: center;">Ихрамга киргенден баштап ажылыктын негизги ритуалдары аткарылганга чейин айтылуучу ыйык чакырык:</p>
+            
+            <div class="talbiya-box">
+                <div class="arabic-text">
+                    لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لاَ شَرِيكَ لَكَ
+                </div>
+                <div class="transliteration">
+                    "Лаббайка Аллахумма лаббайк, лаббайка лаа шарийка лака лаббайк. Иннал-хамда ван-ни'мата лака вал-мулк, лаа шарийка лак!"
+                </div>
+                <div class="translation">
+                    <strong>Мааниси:</strong> "Оо, Жараткан Аллахым, Мен Сенин чакырыгыңа баш ийип келдим! Мен келдим! Сенин эч кандай өнөктөшүң жок, Сенин чакырыгыңа келдим! Чындыгында, бардык мактоолор, шүгүрлөр, чексиз нээматтар жана бүткүл мүлк Жалгыз Сага гана таандык! Сенин эч бир өнөктөшүң жок!"
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Ханафи мазхабы боюнча 3 Фарз -->
+        <section id="farz" class="section">
+            <h2 class="section-title">Ажылыктын 3 Фарзы (Ханафий мазхабы)</h2>
+            <p style="text-align: center; margin-bottom: 25px;">Ханафи мазхабында ажылыктын ичинде 3 фарз бар. Булардын бири да аткарылбай калса, ажылык кабыл болбойт:</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-number">1</div>
+                    <h3>Ихрамга кирүү</h3>
+                    <p>Микат чек арасында атайын нийет кылып, «Талбия» айтуу менен ажылыкка киришүү. Атайын тигилбеген ак кездеме кийилип, ихрам тыюулары сакталат.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">2</div>
+                    <h3>Арафатта туруу (Вукуф)</h3>
+                    <p>Зул-хижжа айынын 9-күнү Арафат өрөөнүндө аз да болсо убакыт туруу. Арафат — тооболор кабыл болуп, күнөөлөр кечирилүүчү эң ыйык жай.</p>
+                </div>
+                <div class="card">
+                    <div class="card-number">3</div>
+                    <h3>Зиярат Тавабы</h3>
+                    <p>Курман айт күндөрү Арафаттан кайткандан кийин, Ыйык Каабаны 7 жолу айлануу (таваф кылуу). Бул ажылыктын негизги курулуш түркүгү.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Сафа жана Марва -->
+        <section id="safa-marva" class="section">
+            <h2 class="section-title">Сафа жана Марва тоолору (Саъй ритуалы)</h2>
+            <div class="content-media">
+                <div class="content-text">
+                    <p><strong>Сафа жана Марва</strong> — Аль-Харам мечитинин ичинде жайгашкан эки ыйык дөбө. Зыяратчылар бул эки тоонун ортосунда 7 жолу басып, <strong>«Саъй»</strong> амалын аткарышат.</p>
+                    <br>
+                    <p><strong>Тарыхый окуясы:</strong> Бул амал Ибрахим пайгамбардын жубайы Хажар энебиздин ымыркай Исмаил үчүн суу издеп, энелик мээрими менен Сафа жана Марва дөбөлөрүнүн ортосунда тынчсызданып чуркаган окуясын эскерет. Аллах Таала эненин берилүүсүн кабыл алып, кыяматка чейин куттуу ритуал катары калтырган.</p>
+                </div>
+                <div class="content-image">
+                    <img src="https://images.unsplash.com/photo-1565552070098-fd83a8cdc1d5?auto=format&fit=crop&w=800&q=80" alt="Сафа жана Марва">
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Зам-зам суусу -->
+        <section id="zamzam" class="section">
+            <h2 class="section-title">Зам-зам Бүлгүркөн Ыйык Суусу</h2>
+            <div class="content-media">
+                <div class="content-image">
+                    <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80" alt="Зам Зам">
+                </div>
+                <div class="content-text">
+                    <p><strong>Зам-зам</strong> — дүйнөдөгү эң таза жана берекелүү суу. Ал Хажар энебиз менен кичинекей Исмаил пайгамбар чөлдө калганда, Исмаилдин согончогу тийген жерден Жабраил периштенин жардамы менен атып чыккан.</p>
+                    <br>
+                    <ul class="custom-list">
+                        <li><strong>Берекеси:</strong> Пайгамбарыбыз (с.а.в.): <em>«Зам-зам суусу кандай нийет менен ичилсе, ошол нийетке шыпаа болот»</em> — деген.</li>
+                        <li>Ал ачка болгонду тогуздаган, оорулууга шыпаа берген минералдарга бай касиеттүү суу.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Каабанын Ыйыктыгы жана Пайгамбарлар Тарыхы -->
+        <section id="kaaba" class="section">
+            <h2 class="section-title">Ыйык Кааба жана Аны Зыярат Кылуу</h2>
+            <p class="intro-text">
+                <strong>Кааба («Бейтуллах» - Аллахтын үйү)</strong> — бүткүл дүйнөдөгү мусулмандардын кыбласы жана жер жүзүндөгү эң биринчи сыйынуу үйү.
+            </p>
+            
+            <h3 style="color: var(--dark-green); margin: 20px 0 10px;">Пайгамбарлардын тарыхы менен байланышы:</h3>
+            <ul class="custom-list">
+                <li><strong>Адам пайгамбар (а.с.):</strong> Жер бетинде биринчи жолу Каабанын пайдубалын түптөгөн.</li>
+                <li><strong>Ибрахим жана Исмаил пайгамбарлар (а.с.):</strong> Топон суусунан кийин Каабаны Аллахтын буйругу менен кайрадан куруп чыгышкан. Курулуш бүткөндө Ибрахим пайгамбар Абу Кубейс тоосуна чыгып, бүткүл адамзатты ажылыкка чакырган.</li>
+                <li><strong>Мухаммад пайгамбар (с.а.в.):</strong> Жаштыгында "Кара ташты" (Хаджар уль-Асвад) ордуна коюуда урууларды жараштырган жана Мекке бошотулганда Каабаны куттуу тазалыкка алып келген.</li>
+            </ul>
+
+            <h3 style="color: var(--dark-green); margin: 25px 0 15px;">Каабаны кантип зыярат кылабыз?</h3>
+            <ol class="custom-list">
+                <li><strong>Ихрамда болуу:</strong> Тазалыкты сактап, куттуу нийет менен Меккеге кирүү.</li>
+                <li><strong>Таваф баштоо:</strong> «Кара таш» (Хаджар уль-Асвад) жайгашкан бурчтан баштап, саат жебесине каршы Каабаны 7 жолу айлануу.</li>
+                <li><strong>Дуба кылуу:</strong> Ар бир айланууда Аллахты улуктап, тообо жана дубаларды айтуу.</li>
+                <li><strong>Макам Ибрахимде намаз:</strong> Таваф аяктагандан кийин Ибрахим пайгамбардын изи калган таштын артында 2 ракаат намаз окуу.</li>
+                <li><strong>Зам-зам ичүү жана Саъй:</strong> Зам-зам суусунан канып ичип, Сафа-Марва тоолоруна барып 7 жолу саъй амалын аткаруу.</li>
+            </ol>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Ыйык Ажылык жана Кааба маалыматтык порталы &copy; 2026. Бардык укуктар корголгон.</p>
+    </footer>
+
+</body>
+</html>
